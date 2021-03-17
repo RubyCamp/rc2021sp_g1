@@ -1,31 +1,26 @@
-class Background < Sprite
+class Background
     ONE_SEC_FRAMES = 60
-    def initialize(x, image_num, speed)
+    def initialize(x, speed)
+        @image = Image.load("./image/image1.png")
 
         @speed = speed
-        # mainファイルで初期画像を指定
-        @image_num = image_num
-
-        image1 = Image.load("./image/image1.png")
-        image2 = Image.load("./image/image2.png")
-
-        @images = [image1, image2]
-
-        super(x, y, @images[1])
-        
-        # 画像　フラグ用
-        @flag = false
-
-        # フレームの初期化
-        @frame = 0
+        @map_x = 0
     end
 
     def update
-        img = @images.shift
-        @images << img
+        # 座標計算
+        @map_x -= @speed
 
-        self.image = @images[0]
-        
-        self.x -= @speed
+        # 1つ目のimageの端まで来たら
+        if @image.width + @map_x <= @speed
+            # 表示するx座標に@image.widthを足す
+            @map_x += @image.width
+        end
+    end
+
+    def draw
+        # 計算したx座標をもとに画像を表示する
+        Window.draw(@map_x, 0, @image)
+        Window.draw(@image.width + @map_x, 0, @image)
     end
 end
