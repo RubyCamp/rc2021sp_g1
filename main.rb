@@ -1,16 +1,20 @@
 require 'dxruby'
+require 'singleton'
+
+require_relative 'scene'
 require_relative 'rythm'
-##require_relative 'director'
+#require_relative 'player' #←池田班のモジュール
+
+#require_relative 'director_base' 多分要らん気がする
+require_relative 'director'
 
 Window.width = 800
 Window.height = 600
 
-note_symbol_up = Note.new(800, 200, "note_symbol_up.png")
-note_symbol_down = Note.new(800, 400, "note_symbol_down.png")
+Scene.add(Game::Director.new, :game)
+Scene.move_to(:game)
 
 Window.loop do
-    note_symbol_up.update
-    note_symbol_down.update
-    note_symbol_up.draw
-    note_symbol_down.draw
+    break if Input.key_push?(K_ESCAPE)
+    Scene.play
 end
