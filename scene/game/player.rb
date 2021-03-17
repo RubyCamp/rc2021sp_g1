@@ -22,14 +22,19 @@ module Game
         def update
             if Input.key_push?(K_A) && !animating?
                 @state = :bottom
+                #@images = Image.load_tiles("(重国の地上アクション画像)", hoge, hoge)
             end
 
             if Input.key_push?(K_Q) && !animating?
                 @state = :top
+                #@images = Image.load_tiles("(重国の空中アクション画像)", hoge, hoge)
             end
+
             p [:state, @state] ##テスト用
             animation
         end
+
+        ##重国を通常時走らせるためにrunメソッド定義する？
 
         def animation
             if animating?
