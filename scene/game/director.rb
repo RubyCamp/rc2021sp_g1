@@ -7,10 +7,8 @@ module Game
     # シーン管理
     class Director
         def initialize#初期化
-            #背景画像
-            @background = Background.new(2)
-
-            @notes = []
+            @background = Background.new(2)#背景画像
+            @notes = []#音符
             @player = Player.new(100, 400, 5)
             @music = Bgm.new()
         end
