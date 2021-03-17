@@ -10,9 +10,8 @@ class Background < Sprite
         image2 = Image.load("./image/image2.png")
 
         @images = [image1, image2]
-        @image_num = @images.size
 
-        super(x, y, @images[0])
+        super(x, y, @images[1])
         
         # 画像　フラグ用
         @flag = false
@@ -22,15 +21,11 @@ class Background < Sprite
     end
 
     def update
-        @frame += 1
-        if @frame == ONE_SEC_FRAMES * 5
-            @frame = 0
-            img = @images.shift
-            @images << img
+        img = @images.shift
+        @images << img
 
-            self.image = @images[0]
-        end
-
+        self.image = @images[0]
+        
         self.x -= @speed
     end
 end
