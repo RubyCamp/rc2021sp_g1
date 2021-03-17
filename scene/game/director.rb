@@ -1,11 +1,15 @@
 require_relative 'note'
 require_relative 'player'
 require_relative 'bgm'
+require_relative 'background'
 
 module Game
     # シーン管理
     class Director
         def initialize#初期化
+            #背景画像
+            @background = Background.new(2)
+
             @notes = []
             @player = Player.new(100, 400, 5)
             @music = Bgm.new()
@@ -18,6 +22,9 @@ module Game
             elsif Input.key_push?(K_DOWN)
                 @notes << Note.new("bottom")
             end
+
+            @background.update()
+            @background.draw()
 
             @music.update()
 
