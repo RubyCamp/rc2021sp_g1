@@ -1,8 +1,12 @@
+require_relative 'note'
+require_relative 'player'
+
 module Game
     # シーン管理
     class Director
         def initialize#初期化
             @notes = []
+            @player = Player.new(100, 100, 5)
         end
 
         def play#1フレーム描画
@@ -12,6 +16,9 @@ module Game
             elsif Input.key_push?(K_DOWN)
                 @notes << Note.new("bottom")
             end
+
+            @player.update()
+            @player.draw()
 
             Sprite.update(@notes)
             Sprite.clean(@notes)
