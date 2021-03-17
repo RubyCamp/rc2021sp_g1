@@ -1,5 +1,6 @@
 require_relative 'note'
 require_relative 'player'
+require_relative 'bgm'
 
 module Game
     # シーン管理
@@ -7,6 +8,7 @@ module Game
         def initialize#初期化
             @notes = []
             @player = Player.new(100, 100, 5)
+            @music = Bgm.new()
         end
 
         def play#1フレーム描画
@@ -17,13 +19,16 @@ module Game
                 @notes << Note.new("bottom")
             end
 
+            @music.update()
+
             @player.update()
             @player.draw()
 
             Sprite.update(@notes)
-            Sprite.clean(@notes)
             Sprite.draw(@notes)
+            Sprite.clean(@notes)
         end
+        #reloadメソッド　音楽をリロードする！！←いらん？
     end
 
     def title_draw#タイトル文字列描画

@@ -2,7 +2,6 @@ require 'dxruby'
 require 'singleton'
 
 require_relative 'scene/scene'
-#require_relative 'player' #←池田班のモジュール
 
 #require_relative 'director_base' 多分要らん気がする
 require_relative 'scene/game/director'
