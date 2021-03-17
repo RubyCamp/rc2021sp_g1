@@ -27,8 +27,7 @@ module Game
             if Input.key_push?(K_Q) && !animating?
                 @state = :top
             end
-            p [:state, @state]
-
+            p [:state, @state] ##テスト用
             animation
         end
 
@@ -36,19 +35,23 @@ module Game
             if animating?
                 case @state
                 when :top
-                    self.y = @original_y - 100
+                    self.y = @original_y - 200
                 when :bottom
                 end
 
                 @frame += 1
                 if @frame == 5
                     @frame = 0
+
                     if @image_index == @images.size
                         @state = :waiting
                         @image_index = 0
+
                         self.y = @original_y
                     end
+
                     self.image = @images[@image_index]
+
                     if animating?
                         @image_index += 1
                     end

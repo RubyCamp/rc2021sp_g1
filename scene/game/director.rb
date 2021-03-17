@@ -7,7 +7,7 @@ module Game
     class Director
         def initialize#初期化
             @notes = []
-            @player = Player.new(100, 100, 5)
+            @player = Player.new(100, 400, 5)
             @music = Bgm.new()
         end
 
@@ -28,7 +28,6 @@ module Game
             Sprite.draw(@notes)
             Sprite.clean(@notes)
         end
-        #reloadメソッド　音楽をリロードする！！←いらん？
     end
 
     def title_draw#タイトル文字列描画
