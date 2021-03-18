@@ -4,7 +4,7 @@ module Game
         def initialize(x, y, speed)
             @speed = speed
 
-            @images = Image.load_tiles("images/KGRN5187.png", 6, 1)
+            @images = Image.load_tiles("images/run.png", 6, 1)
             self.scale_x = 1.5
             self.scale_y = 1.5
 
