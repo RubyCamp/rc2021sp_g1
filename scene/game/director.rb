@@ -17,42 +17,64 @@ module Game
             @aim2 = Aim.new(300, 400, :bottom)
 
             @count = 0
+
+            @all_notes = [
+                Note.new("top", 2),
+                Note.new("bottom", 6),
+                Note.new("top", 6.5),
+                Note.new("bottom", 8)
+            ]
+
+            @notes = []
+        end
+
+        def reload
+            @start = Time.now()
+        end
+
+        def refresh_notes
+            now = Time.now()
+            dt = now - @start
+            @notes = @all_notes.select{|note| note.dt < dt }
         end
 
         def play#1フレーム描画
             #テスト機能：上下キー入力で音符の上下を生成
 
-            if Input.key_push?(K_UP)
-                @notes << Note.new("top")
-            elsif Input.key_push?(K_DOWN)
-                @notes << Note.new("bottom")
-            end
+            # if Input.key_push?(K_UP)
+            #     @notes << Note.new("top")
+            # elsif Input.key_push?(K_DOWN)
+            #     @notes << Note.new("bottom")
+            # end
 
             @background.update()
-
             @music.update()
             @player.update()
+            refresh_notes
             Sprite.update(@notes)
 
             Sprite.check(@aim1, @notes)
             Sprite.check(@aim2, @notes)
 
-            if @count > (30 * 60)
-                sum = 0 ##true
+            if @count > (20 * 60)
+                sum = @all_notes.inject(0) {|sum, note| sum + note.score }
                 Scene.set(:total_score, sum)
                 Scene.move_to(:result)
             end
 
-            Sprite.draw(@notes)
             @background.draw()
             @player.draw()
             @aim1.draw
             @aim2.draw
+            Sprite.draw(@notes)
 
             Sprite.clean(@notes)
 
             @count += 1
         end
+    end
+
+    def reload
     end
 
     # def gameover

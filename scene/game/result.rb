@@ -19,7 +19,6 @@ module Game
             score_size = @SCORE.to_s
             s_size = score_size.size
             s = 50*(s_size/2)
-
             
             # Window.draw_box_fill(0,0,800,600,[230,255,255]z=0)
             Window.draw_font(335,100,"Result!",font1,)

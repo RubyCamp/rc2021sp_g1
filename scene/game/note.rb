@@ -1,7 +1,10 @@
 module Game
     class Note < Sprite
-        def initialize(pos)
+        attr_reader :score, :dt
+        def initialize(pos, dt)
             self.x = 800
+            @score = 0
+            @dt = dt
 
             #音符描画位置
             if pos == "top"
@@ -28,11 +31,11 @@ module Game
 
         def assessor(aim)
             if (self.center_x - aim.center_x).abs < 15
-                puts " great"
+                @score = 1000
             elsif (self.center_x - aim.center_x).abs < 30
-                puts " good"
+                @score = 500
             else
-                puts " bad"
+                @score = 100
             end
             @judged = true
         end
