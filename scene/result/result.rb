@@ -24,7 +24,7 @@ module Result
             Window.draw_font(335,100,"Result!",font1,)
             Window.draw_font(390-s,250,"#{@SCORE}",font2)
             Window.draw_font(500,350,"Points!",font3)
-            Window.draw_font(270,500,"Press 'Space' to Restart!",font4)
+            Window.draw_font(293,500,"Thank you for playing !",font4)
 
         end
         ONE_SEC_FRAMES = 60

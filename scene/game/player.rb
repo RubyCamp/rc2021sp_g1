@@ -47,7 +47,7 @@ module Game
                 end
 
                 @frame += 1
-                if @frame == 5
+                if @frame == 3
                     @frame = 0
 
                     if @image_index == @images.size
