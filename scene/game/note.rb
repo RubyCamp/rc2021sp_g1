@@ -15,6 +15,11 @@ module Game
                 self.image = Image.load("images/note_symbol_bottom.png")
             end
 
+            #サウンドエフェクト
+            @great_se = Sound.new("music/great.wav")
+            @good_se = Sound.new("music/great.wav")
+            @bad_se = Sound.new("music/great.wav")
+
             @judged = false
         end
 
@@ -32,10 +37,13 @@ module Game
         def assessor(aim)
             if (self.center_x - aim.center_x).abs < 15
                 @score = 1000
+                @great_se.play
             elsif (self.center_x - aim.center_x).abs < 30
                 @score = 500
+                @good_se.play
             else
                 @score = 100
+                @bad_se.play
             end
             @judged = true
         end

@@ -33,7 +33,6 @@ module Game
                 #@images = Image.load_tiles("(重国の空中アクション画像)", hoge, hoge)
             end
 
-            #p [:state, @state] ##テスト用
             animation
         end
 

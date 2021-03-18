@@ -12,7 +12,6 @@ module Game
             @notes = []#音符
             @player = Player.new(100, 400, 5)
             @music = Bgm.new()
-            #@aims = [
             @aim1 = Aim.new(300, 200, :top)
             @aim2 = Aim.new(300, 400, :bottom)
 
@@ -40,7 +39,6 @@ module Game
 
         def play#1フレーム描画
             #テスト機能：上下キー入力で音符の上下を生成
-
             # if Input.key_push?(K_UP)
             #     @notes << Note.new("top")
             # elsif Input.key_push?(K_DOWN)
