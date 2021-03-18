@@ -4,64 +4,82 @@ module Game
         def initialize(x, y, speed)
             @speed = speed
 
-            @images = Image.load_tiles("images/KGRN5187.png", 6, 1)
-            self.scale_x = 1.5
-            self.scale_y = 1.5
+            @images = {
+                waiting: Image.load_tiles("images/run.png", 6, 1),
+                top: Image.load_tiles("images/air.png", 3, 1),
+                bottom: Image.load_tiles("images/ground.png", 3, 1)
+            }
 
-            super(x, y, @images[0])
+            @state = :waiting
+            super(x, y, @images[@state][0])
 
             # フレームの初期化
             @frame = 0
 
-            @image_index = 0
+            @image_indexes = {
+                waiting: 0,
+                top: 0,
+                bottom: 0
+            }
             @original_y = y
-
-            @state = :waiting
         end
 
         def update
             if Input.key_push?(K_A) && !animating?
                 @state = :bottom
-                #@images = Image.load_tiles("(重国の地上アクション画像)", hoge, hoge)
             end
 
             if Input.key_push?(K_Q) && !animating?
                 @state = :top
-                #@images = Image.load_tiles("(重国の空中アクション画像)", hoge, hoge)
             end
 
-            p [:state, @state] ##テスト用
+            #p [:state, @state] ##テスト用
             animation
         end
 
         ##重国を通常時走らせるためにrunメソッド定義する？
 
         def animation
+            @frame += 1
+
             if animating?
                 case @state
-                when :top
+                when :top, :bottom
                     self.y = @original_y - 200
                 when :bottom
                 end
 
-                @frame += 1
                 if @frame == 5
                     @frame = 0
 
-                    if @image_index == @images.size
+                    if  @image_indexes[@state] == @images[@state].size
                         @state = :waiting
-                        @image_index = 0
+                        @image_indexes[@state] = 0
 
                         self.y = @original_y
                     end
 
-                    self.image = @images[@image_index]
+                    self.image = @images[@state][@image_indexes[@state]]
 
                     if animating?
-                        @image_index += 1
+                        @image_indexes[@state] += 1
                     end
                 end
+            else
+                self.image = @images[@state][@image_indexes[@state]]
+
+                if @frame == 5
+                    @frame = 0
+                    @image_indexes[@state] += 1
+
+                    if @image_indexes[@state] == @images[@state].size
+                        @image_indexes[@state] = 0
+                    end
+                end
+                p [@frame, @state, @image_indexes[@state]]
             end
+
+            # p [:state, @state] if @state != :waiting
         end
 
         def animating?
