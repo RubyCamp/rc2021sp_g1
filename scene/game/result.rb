@@ -5,7 +5,7 @@ module Game
         
             @speed = 3
             @map_x = 0
-            @SCORE = score_point.to_s
+            @SCORE = score_point
         end
         
         def draw_result
@@ -16,7 +16,8 @@ module Game
 
 
             #スコアを中央に配置する
-            s_size = @SCORE.size
+            score_size = @SCORE.to_s
+            s_size = score_size.size
             s = 50*(s_size/2)
 
             
