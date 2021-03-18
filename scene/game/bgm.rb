@@ -16,8 +16,6 @@ module Game
                 when :playing#曲流れてるなら
                 end
             end
-
-            p [:state, @state]
         end
 
         def music_playing?
