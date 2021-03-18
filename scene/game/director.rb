@@ -2,6 +2,7 @@ require_relative 'note'
 require_relative 'player'
 require_relative 'bgm'
 require_relative 'background'
+require_relative 'aim'
 
 module Game
     # シーン管理
@@ -11,10 +12,16 @@ module Game
             @notes = []#音符
             @player = Player.new(100, 400, 5)
             @music = Bgm.new()
+            #@aims = [
+            @aim1 = Aim.new(300, 200, :top)
+            @aim2 = Aim.new(300, 400, :bottom)
+
+            @count = 0
         end
 
         def play#1フレーム描画
             #テスト機能：上下キー入力で音符の上下を生成
+
             if Input.key_push?(K_UP)
                 @notes << Note.new("top")
             elsif Input.key_push?(K_DOWN)
@@ -22,18 +29,36 @@ module Game
             end
 
             @background.update()
-            @background.draw()
 
             @music.update()
-
             @player.update()
-            @player.draw()
-
             Sprite.update(@notes)
+
+            Sprite.check(@aim1, @notes)
+            Sprite.check(@aim2, @notes)
+
+            if @count > (30 * 60)
+                sum = 0 ##true
+                Scene.set(:total_score, sum)
+                Scene.move_to(:result)
+            end
+
             Sprite.draw(@notes)
+            @background.draw()
+            @player.draw()
+            @aim1.draw
+            @aim2.draw
+
             Sprite.clean(@notes)
+
+            @count += 1
         end
     end
+
+    # def gameover
+    #     #ゲームオーバーの条件
+    #     @count > (30 * 60)
+    # end
 
     def title_draw#タイトル文字列描画
         Window.draw_font(50, 5, "Sample Game")

@@ -1,6 +1,9 @@
 module Game
     class Player < Sprite
         ONE_SEC_FRAMES = 60
+
+        attr_reader :state
+
         def initialize(x, y, speed)
             @speed = speed
 
@@ -30,7 +33,7 @@ module Game
                 #@images = Image.load_tiles("(重国の空中アクション画像)", hoge, hoge)
             end
 
-            p [:state, @state] ##テスト用
+            #p [:state, @state] ##テスト用
             animation
         end
 
@@ -62,6 +65,10 @@ module Game
                     end
                 end
             end
+        end
+
+        def center_x
+            self.x + (self.image.width / 2)
         end
 
         def animating?

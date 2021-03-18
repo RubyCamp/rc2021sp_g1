@@ -1,6 +1,7 @@
 class Scene
 	@@scenes = {}
 	@@current = nil
+	@@variables = {}
 
 	class << self
 		def add(director, title)
@@ -11,8 +12,17 @@ class Scene
 			@@current = title.to_sym
 		end
 
+		def set(key, value)
+			@@variables[key] = value
+		end
+
+		def get(key)
+			@@variables[key]
+		end
+
 		def play
 			@@scenes[@@current].play#directorクラス？のplayで良いよね？？
 		end
+
 	end
 end
