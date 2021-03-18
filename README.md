@@ -6,7 +6,13 @@
 ## キャラクター・背景
     miyai
 ## 使用楽曲
-    「白日」大久保夏樹
+    □曲名：星屑サラウンド
+    □作詞：白井舞
+    □作曲： 龍崎一
+    □ボーカル：白井舞
+
+    音楽利用規約 https://dova-s.jp/_contents/license/
+    サイト利用規約 https://dova-s.jp/_contents/agreement/
 
 ## Special Thanks! 
     本多さん
