@@ -18,9 +18,13 @@ module Game
             @count = 0
 
             @all_notes = [
-                Note.new("top", 2),
+                Note.new("top", 3),
                 Note.new("bottom", 6),
-                Note.new("top", 6.5),
+                Note.new("top", 7),
+                Note.new("bottom", 8),
+                Note.new("top", 3),
+                Note.new("bottom", 6),
+                Note.new("top", 7),
                 Note.new("bottom", 8)
             ]
 

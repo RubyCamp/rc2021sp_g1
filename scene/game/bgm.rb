@@ -2,7 +2,7 @@ module Game
     class Bgm
         def initialize
             #bgm取り込み
-            @music = Sound.new("music/game_bgm.mid")
+            @music = Sound.new("music/game_bgm.wav")
             @state = :paused
         end
 
