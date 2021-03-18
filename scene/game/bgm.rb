@@ -3,6 +3,7 @@ module Game
         def initialize
             #bgm取り込み
             @music = Sound.new("music/game_bgm.wav")
+            @music.set_volume(170)
             @state = :paused
         end
 
