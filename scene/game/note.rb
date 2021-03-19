@@ -17,8 +17,8 @@ module Game
 
             #サウンドエフェクト
             @great_se = Sound.new("music/great.wav")
-            @good_se = Sound.new("music/great.wav")
-            @bad_se = Sound.new("music/great.wav")
+            @good_se = Sound.new("music/good.wav")
+            @bad_se = Sound.new("music/bad.wav")
 
             @judged = false
         end
